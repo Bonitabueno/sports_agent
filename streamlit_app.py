@@ -1,3 +1,5 @@
+import streamlit as st
+
 # 챗봇 인터페이스 메인 함수
 # 스피너 없음
 def main():
