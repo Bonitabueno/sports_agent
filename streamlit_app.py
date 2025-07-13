@@ -1,4 +1,5 @@
 import streamlit as st
+from llm_engine import generate_response
 
 # 챗봇 인터페이스 메인 함수
 # 스피너 없음
