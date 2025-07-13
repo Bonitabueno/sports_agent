@@ -1,11 +1,4 @@
 import streamlit as st
-from llm_engine import load_model
-
-with st.spinner("모델 로딩 중... 잠시만 기다려 주세요"):
-    model, tokenizer = load_model()
-
-st.success("모델 로딩 완료!")
-
 from llm_engine import generate_response
 
 # 챗봇 인터페이스 메인 함수
