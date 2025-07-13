@@ -1,44 +1,4 @@
 import streamlit as st
-from transformers import AutoModelForCausalLM, AutoTokenizer
-
-model_name = "Qwen/Qwen2.5-0.5B-Instruct"
-
-model = AutoModelForCausalLM.from_pretrained(
-    model_name,
-    torch_dtype="auto",
-    device_map="auto"
-)
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-
-prompt = "당신의 이름은 무엇인가요?"
-messages = [
-    {"role": "system", "content": (
-        "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."
-        "You speak Korean all the time."
-      )
-    },
-    {"role": "user", "content": prompt}
-]
-text = tokenizer.apply_chat_template(
-    messages,
-    tokenize=False,
-    add_generation_prompt=True
-)
-model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
-
-generated_ids = model.generate(
-    **model_inputs,
-    max_new_tokens=512
-)
-generated_ids = [
-    output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
-]
-
-response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
-st.write(response)
-
-
-import streamlit as st
 
 # 챗봇 인터페이스 메인 함수
 # 스피너 없음
@@ -63,7 +23,7 @@ def main():
         st.session_state.messages.append({"role": "user", "content": user_input})
 
         # 사용자 입력 처리
-        response = process_input(user_input)  # process_input 함수 호출
+        response = generate_response(user_input)  # process_input 함수 호출
         assistant_response = response
 
         # 챗봇 응답 출력
