@@ -1,9 +1,9 @@
 import streamlit as st
+from llm_engine import load_model
 from llm_engine import generate_response
-from llm_engine import model, tokenizer
 
 with st.spinner("모델 로딩 중... 잠시만 기다려 주세요"):
-    pass
+    model, tokenizer = load_model()
 
 st.success("모델 로딩 완료!")
 
