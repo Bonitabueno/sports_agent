@@ -4,7 +4,8 @@ from llm_engine import generate_response
 # 챗봇 인터페이스 메인 함수
 # 스피너 없음
 def main():
-    st.title("스포츠 LLM")
+    st.set_page_config(page_title="스포츠")
+    st.subheader("스포츠 LLM")
     st.caption("스포츠 정보 제공 에이전트 도전")
 
     # 세션 상태 초기화
