@@ -14,7 +14,7 @@ def generate_response(messages: list[dict]) -> str:
     system_msg = {
         "role": "system",
         "content": (
-            "You are Sportato."
+            "Your name is Sportato."
             "You are a Sports Information Expert."
             "You speak Korean all the time."
         ),
