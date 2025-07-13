@@ -1,20 +1,14 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 _MODEL_NAME = "Qwen/Qwen2.5-0.5B-Instruct"
-_model = None
-_tokenizer = None
 
-def load_model():
-    global _model, _tokenizer
-    if _model is None or _tokenizer is None:
-        _tokenizer = AutoTokenizer.from_pretrained(_MODEL_NAME)
-        _model = AutoModelForCausalLM.from_pretrained(
-            _MODEL_NAME,
-            torch_dtype="auto",
-            device_map="auto",
-        )
-    return _model, _tokenizer
-
+# 모델·토크나이저는 한 번만 로드
+model = AutoModelForCausalLM.from_pretrained(
+    _MODEL_NAME,
+    torch_dtype="auto",
+    device_map="auto",
+)
+tokenizer = AutoTokenizer.from_pretrained(_MODEL_NAME)
 
 def generate_response(prompt: str) -> str:
     """사용자 입력(prompt)을 넣으면 LLM 응답 한 문단을 돌려준다."""
