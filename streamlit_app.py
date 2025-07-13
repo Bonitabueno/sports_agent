@@ -5,7 +5,7 @@ from llm_engine import generate_response
 # 스피너 없음
 def main():
     st.title("스포츠 LLM")
-    st.write("스포츠 정보 제공 에이전트 도전")
+    st.caption("스포츠 정보 제공 에이전트 도전")
 
     # 세션 상태 초기화
     if "messages" not in st.session_state:
